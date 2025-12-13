@@ -1,6 +1,6 @@
 # InfCloud
 
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/ckulka/infcloud) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ckulka/infcloud) ![Docker Architectures](https://img.shields.io/badge/arch-amd64%20%7C%20arm32v7%20%7C%20arm64v8-informational)
+![Docker Automated build](https://img.shields.io/docker/automated/ckulka/infcloud) ![Docker Architectures](https://img.shields.io/badge/arch-amd64%20%7C%20arm32v7%20%7C%20arm64v8-informational)
 
 This dockerfile provides a ready-to-go [InfCloud server](https://www.inf-it.com/open-source/clients/infcloud/). It was inspired and requested in [ckulka/baikal-docker#13](https://github.com/ckulka/baikal-docker/issues/13).
 
@@ -89,8 +89,6 @@ The only adjustment in this example to the [examples/config-baikal.js](https://g
 The main reason to not package PHP _and_ Nginx (or Apache httpd) in the same container is maintainablility.
 
 By leveraging the official PHP image instead of installing PHP into the Nginx container, users can benefit from timely updates being made to the official PHP image and do not have to wait for this image to be updated.
-
-This image is also built automatically by Docker Hub whenever a new version of Nginx is published.
 
 ## References
 
