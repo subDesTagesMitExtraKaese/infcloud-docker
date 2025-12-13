@@ -8,27 +8,16 @@
 # 1. Go to Baikal Settings (http://baikal.localhost/admin/?/settings/standard/)
 # 2. Change "WebDAV authentication type" to "Basic"
 
-version: "2"
-
 services:
   infcloud:
     image: ckulka/infcloud
     restart: always
-    depends_on:
-      - php
     labels:
       traefik.enable: "true"
       traefik.frontend.rule: "Host: infcloud.localhost"
       traefik.port: 80
     volumes:
-      - infcloud:/usr/share/nginx/infcloud
       - ./config-baikal.js:/usr/share/nginx/infcloud/config.js:ro
-
-  php:
-    image: php:7.3-fpm-alpine
-    restart: always
-    volumes:
-      - infcloud:/usr/share/nginx/infcloud:ro
 
   # IMPORTANT: For current configuration examples, see
   #   - Simple Baikal example: https://github.com/ckulka/baikal-docker/blob/master/examples/docker-compose.yaml
@@ -58,6 +47,3 @@ services:
       - --accesslog
       - --docker
       - --docker.exposedByDefault=false
-
-volumes:
-  infcloud:

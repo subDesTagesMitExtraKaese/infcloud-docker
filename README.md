@@ -46,19 +46,13 @@ From [inf-it.com/open-source/clients/infcloud](https://www.inf-it.com/open-sourc
 
 ## How to use this image
 
-This image serves the static content with [nginx](http://nginx.org/) and renders the PHP files with [PHP-FPM](https://hub.docker.com/_/php#phpversion-fpm).
+This image serves the static content with [nginx](http://nginx.org/).
 
 This repository contains a Docker Compose example in [examples/docker-compose.yaml](https://github.com/ckulka/infcloud-docker/blob/master/examples/docker-compose.yaml) to give an easy example:
 
 ```bash
 # The examples/config.js file used by this example is the default one that ships with InfCloud
 docker-compose up
-```
-
-If you only need the static files without PHP, you can also just run the Nginx container:
-
-```bash
-docker run --rm -it -v config.js:/usr/share/nginx/html/config.js:ro -p 80:80 ckulka/infcloud
 ```
 
 Then you can hit [http://localhost](http://localhost) or [http://host-ip](http://host-ip) in your browser and use InfCloud.
@@ -82,13 +76,6 @@ Once all that is done, go to [http://infcloud.localhost/](http://infcloud.localh
 
 The only adjustment in this example to the [examples/config-baikal.js](https://github.com/ckulka/infcloud-docker/blob/master/examples/config-baikal.js#L335) file were modifications to the `globalNetworkCheckSettings.href` settings.
 
-## FAQ
-
-### Why not one image with Nginx + PHP?
-
-The main reason to not package PHP _and_ Nginx (or Apache httpd) in the same container is maintainablility.
-
-By leveraging the official PHP image instead of installing PHP into the Nginx container, users can benefit from timely updates being made to the official PHP image and do not have to wait for this image to be updated.
 
 This image is also built automatically by Docker Hub whenever a new version of Nginx is published.
 
