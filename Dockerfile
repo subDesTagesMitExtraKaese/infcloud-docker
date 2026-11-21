@@ -1,4 +1,4 @@
-ARG FROM_VARIANT=1-alpine
+ARG FROM_VARIANT=1.30.7-alpine
 
 # Multi-stage build, see https://docs.docker.com/develop/develop-images/multistage-build/
 FROM alpine AS builder

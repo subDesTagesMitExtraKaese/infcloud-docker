@@ -1,6 +1,6 @@
 # InfCloud
 
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/ckulka/infcloud) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ckulka/infcloud) ![Docker Architectures](https://img.shields.io/badge/arch-amd64%20%7C%20arm32v7%20%7C%20arm64v8-informational)
+![Docker Automated build](https://img.shields.io/docker/automated/ckulka/infcloud) ![Docker Architectures](https://img.shields.io/badge/arch-amd64%20%7C%20arm32v7%20%7C%20arm64v8-informational)
 
 This dockerfile provides a ready-to-go [InfCloud server](https://www.inf-it.com/open-source/clients/infcloud/). It was inspired and requested in [ckulka/baikal-docker#13](https://github.com/ckulka/baikal-docker/issues/13).
 
@@ -76,8 +76,6 @@ Once all that is done, go to [http://infcloud.localhost/](http://infcloud.localh
 
 The only adjustment in this example to the [examples/config-baikal.js](https://github.com/ckulka/infcloud-docker/blob/master/examples/config-baikal.js#L335) file were modifications to the `globalNetworkCheckSettings.href` settings.
 
-
-This image is also built automatically by Docker Hub whenever a new version of Nginx is published.
 
 ## References
 
