@@ -1,4 +1,4 @@
-ARG FROM_VARIANT=1.30.7-alpine
+ARG FROM_VARIANT=1.31.9-alpine@sha256:fb4658584bd9a916ffb6f6e365f97c25cfdb2923801f551ea08356e695f14ff7
 
 # Multi-stage build, see https://docs.docker.com/develop/develop-images/multistage-build/
 FROM alpine:3.24 AS builder
