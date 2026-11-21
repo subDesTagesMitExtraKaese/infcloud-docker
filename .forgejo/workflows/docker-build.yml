@@ -1,0 +1,67 @@
+# Required repository secrets:
+#   REGISTRY_USERNAME - Forgejo username for the container registry
+#   REGISTRY_PASSWORD - Forgejo access token with package write permission
+name: docker build
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "*"
+
+env:
+  REGISTRY: git.justprojects.de
+
+jobs:
+  build:
+    runs-on: docker
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set image name
+        run: |
+          repository="$(printf '%s' "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')"
+          echo "IMAGE_NAME=${REGISTRY}/${repository}" >> "${GITHUB_ENV}"
+
+      # See https://github.com/docker/setup-qemu-action
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # See https://github.com/docker/setup-buildx-action
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # See https://github.com/docker/login-action
+      - name: Login to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Parse tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          tag="${{ github.ref_name }}"
+          echo "DOCKER_TAG=${tag%%+*}" >> "${GITHUB_ENV}"
+
+      - name: Build and push experimental image
+        if: github.ref == 'refs/heads/master'
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64/v8
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:experimental
+
+      - name: Build and push release image
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/386
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+            ${{ env.IMAGE_NAME }}:latest
