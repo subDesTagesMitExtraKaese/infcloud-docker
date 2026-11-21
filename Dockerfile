@@ -1,7 +1,7 @@
 ARG FROM_VARIANT=1.30.7-alpine
 
 # Multi-stage build, see https://docs.docker.com/develop/develop-images/multistage-build/
-FROM alpine AS builder
+FROM alpine:3.24 AS builder
 
 RUN apk add \
   unzip \
