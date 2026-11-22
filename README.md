@@ -1,6 +1,6 @@
 # InfCloud
 
-![Docker Automated build](https://img.shields.io/docker/automated/ckulka/infcloud) ![Docker Architectures](https://img.shields.io/badge/arch-amd64%20%7C%20arm32v7%20%7C%20arm64v8-informational)
+[![Docker build](https://git.justprojects.de/subDesTagesMitExtraKaese/infcloud-docker/badges/workflows/docker-build.yml/badge.svg?branch=master)](https://git.justprojects.de/subDesTagesMitExtraKaese/infcloud-docker/actions?workflow=docker-build.yml) ![Docker Architectures](https://img.shields.io/badge/arch-amd64%20%7C%20arm%2Fv7%20%7C%20arm64%2Fv8-informational)
 
 This dockerfile provides a ready-to-go [InfCloud server](https://www.inf-it.com/open-source/clients/infcloud/). It was inspired and requested in [ckulka/baikal-docker#13](https://github.com/ckulka/baikal-docker/issues/13).
 
